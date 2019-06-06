@@ -1,0 +1,61 @@
+/*
+ * CS640 Project 1
+ *
+ * Authors: Jared Punzel & Jim Loethan
+ *
+ *
+ */
+
+In source directory:
+
+
+make: to make binares.
+make all: to make all.
+make debug: to endable gdb
+make clean: to remove binaires.
+
+
+To run blaster:
+
+./blaster -s <hostname> -p <port> -r <rate> -n <num> -q <seq> -l <len> -c <echo>
+
+
+
+To run blastee:
+
+./blastee -p <port> -c <echo>
+
+
+To end prematurely:
+
+Ctrl-c
+
+Note echo port is the inputed port + 1, unless its 65535,
+then the echo port is 65534.
+
+
+Example:
+
+$ ./blastee -p 45000 -c 1
+blastee: waiting to get blasted!
+Source: 127.0.0.1(45000) | Length: 10 | Seq#: 1 | Time: 0.0 | Payload: 0x67458b6b
+Source: 127.0.0.1(45000) | Length: 10 | Seq#: 11 | Time: 1.5 | Payload: 0xc6237b32
+
+Done.
+Elapsed time: 0.00 s
+Packets received: 3
+Bytes received: 57
+Average packets/sec: 1018.68
+Average bytes/sec: 19354.84
+
+
+$ ./blaster -s 127.0.0.1 -p 45000 -r 1000 -n 3 -q 1 -l 10 -c 1
+BLAST -> sequence: 1 payload: 0x67458b6b
+ECHO <- sequence: 1, payload: 0x67458b6b
+BLAST -> sequence: 11 payload: 0xc6237b32
+ECHO <- sequence: 11, payload: 0xc6237b32
+BLAST -> sequence: 21 payload: 0x69983c64
+ECHO <- sequence: 21, payload: 0x69983c64
+
+
+
